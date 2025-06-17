@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Practice Challenges</title>
+<script>
+  function generateAssignments() {
+    const rollPrefix = '2311IT010';
+    let students = [];
+    for (let i = 91; i <= 180; i++) {
+      students.push(rollPrefix + String(i).padStart(3, '0'));
+    }
+
+    // Create 90 questions (9 × 10)
+    let questions = [];
+    for (let q = 1; q <= 9; q++) {
+      for (let j = 0; j < 10; j++) {
+        questions.push(q);
+      }
+    }
+
+    // Shuffle questions only
+    for (let i = questions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+
+    return { students, questions };
+  }
+
+  function generateGrid(assignments) {
+    const table = document.getElementById('assignment-table');
+    for (let row = 0; row < 9; row++) {
+      const tr = document.createElement('tr');
+      for (let col = 0; col < 10; col++) {
+        const index = row * 10 + col;
+        const td = document.createElement('td');
+        td.className = "border p-4 text-center text-sm md:text-base font-medium bg-white hover:bg-blue-50 transition";
+        td.innerHTML = `<div>${assignments.students[index]}</div><div class="text-blue-600">Q${assignments.questions[index]}</div>`;
+        tr.appendChild(td);
+      }
+      table.appendChild(tr);
+    }
+  }
+
+  window.onload = () => {
+    let assignments = localStorage.getItem('htmlAssignmentGridOrdered');
+    if (!assignments) {
+      assignments = JSON.stringify(generateAssignments());
+      localStorage.setItem('htmlAssignmentGridOrdered', assignments);
+    }
+    generateGrid(JSON.parse(assignments));
+  };
+</script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-gradient-to-br from-white to-blue-50 min-h-screen p-6 text-gray-800">
+  <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-blue-100">
+    <h1 class="text-3xl font-bold mb-4 text-center text-blue-700">9 HTML Combined Task Challenges</h1>
+    <p class="text-center mb-8 text-gray-600">Each challenge includes two distinct tasks—designed to provide varied and comprehensive HTML practice.</p>
+
+    <div class="space-y-8">
+      <!-- Challenge 1 -->
+      <section class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">1. Sign-Up Form + Art Gallery</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+          <li>Create a job application form with radio buttons for gender, dropdown for position, checkboxes for skills, and textarea for motivation.</li>
+          <li>Create an art gallery with 6 images in a grid using &lt;table&gt; and add &lt;figcaption&gt; to each.</li>
+        </ul>
+      </section>
+
+      <!-- Challenge 2 -->
+      <section class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">2. Blog Article + Travel Brochure</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+          <li>Write a short blog article with a heading and a few paragraphs using &lt;article&gt; and &lt;hr&gt;.</li>
+          <li>Design a travel brochure using &lt;div&gt;, &lt;img&gt;, &lt;blockquote&gt;, and &lt;figure&gt; with captions.</li>
+        </ul>
+      </section>
+
+      <!-- Challenge 3 -->
+      <section class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">3. Conference Schedule + Grocery List</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+          <li>Design a conference schedule using &lt;table&gt;, &lt;th&gt;, &lt;caption&gt;, and use colspan for session spanning.</li>
+          <li>Make a grocery list using &lt;ul&gt; and &lt;li&gt; items.</li>
+        </ul>
+      </section>
+
+      <!-- Challenge 4 -->
+      <section class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">4. Author Biography + Motivational Quote</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+          <li>Write a brief biography of a famous author using &lt;section&gt;, &lt;abbr&gt;, &lt;mark&gt;, and organize it within a styled container.</li>
+          <li>Display a motivational quote using &lt;blockquote&gt; and attribute the author with &lt;cite&gt;.</li>
+        </ul>
+      </section>
+
+      <!-- Challenge 5 -->
+      <section class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">5. Vacation Memories + Book Chapter Outline</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+          <li>Create a chapter outline using ordered list with nested unordered lists and highlight chapter titles with &lt;b&gt; or &lt;u&gt;.</li>
+          <li>Write about a recent vacation using &lt;h2&gt;, &lt;p&gt;, and &lt;br&gt; tags.</li>
+        </ul>
+      </section>
+
+      <!-- Challenge 6 -->
+      <section class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">6. Navigation Menu + Favorite Books Table</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+          <li>Add a navigation menu using &lt;nav&gt;, &lt;a&gt;, and internal anchor links (e.g., #about, #contact).</li>
+          <li>Build a table with your top 3 favorite books and authors using &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;.</li>
+        </ul>
+      </section>
+
+      <!-- Challenge 7 -->
+      <section class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">7. Music Album + Pet Photo</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+          <li>Create a music album preview with &lt;audio&gt;, multiple &lt;source&gt; tags, and styled song titles using &lt;strong&gt; or &lt;em&gt;.</li>
+          <li>Insert a photo of your favorite pet with an alt description using &lt;img&gt;.</li>
+        </ul>
+      </section>
+
+      <!-- Challenge 8 -->
+      <section class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">8. Historical Timeline + Movie Trailer</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+          <li>Create a historical timeline of a famous person using &lt;ol&gt;, &lt;time&gt;, and nested &lt;ul&gt; for related events.</li>
+          <li>Embed a YouTube trailer of your favorite movie using &lt;iframe&gt;.</li>
+        </ul>
+      </section>
+
+      <!-- Challenge 9 -->
+      <section class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-800 mb-2">9. Personal Introduction + Chapter Summary</h2>
+        <ul class="list-disc list-inside space-y-1 text-gray-700">
+          <li>Create a personal intro with name, age, and a fun fact using &lt;h1&gt;, &lt;p&gt;, and &lt;br&gt;.</li>
+          <li>Write a summary of your favorite book chapter using &lt;p&gt;, &lt;q&gt;, and &lt;em&gt; tags.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <div class="w-full max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center text-blue-800">Daily Assignment Distribution</h1>
+    <div class="overflow-auto rounded shadow-md bg-white border border-gray-200">
+      <table id="assignment-table" class="w-full table-auto border-collapse text-gray-700">
+        <!-- Grid will be generated here -->
+      </table>
+    </div>
+  </div>
+</body>
+</html>
