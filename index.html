@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assignment Index</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f5f5f5;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 0.5rem 0;
+    }
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Assignment Dates</h1>
+  <ul id="assignmentList"></ul>
+
+  <script>
+    const assignmentDates = [
+      "2025-06-14",
+      "2025-06-15",
+      "2025-06-16",
+      "2025-06-17",
+      "2025-06-18",
+    ];
+
+    const list = document.getElementById("assignmentList");
+
+    assignmentDates.forEach((date) => {
+      const li = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = `assignment-${date}.html`; // Example: assignment-2025-06-14.html
+      link.textContent = date;
+      li.appendChild(link);
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
